@@ -9,6 +9,8 @@ services:
       - DATABASE_URL=postgresql://cetaitquand:${DB_PASSWORD}@db:5432/cetaitquand
       - FRONTEND_URL=https://cetaitquand.fr
       - FRONTEND_URL_2=${FRONTEND_URL_2:-}
+      - TIMER=15
+      - POINT_WIN=10
     depends_on:
       db:
         condition: service_healthy
