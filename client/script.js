@@ -10,7 +10,7 @@ const CONFIG = {
         TIMER: 7
     },
     prod: {
-        BACKEND_URL: "https://c-etait-quand-back.onrender.com",
+        BACKEND_URL: "https://api.cetaitquand.fr",
         TIMER: 15
     }
 };
