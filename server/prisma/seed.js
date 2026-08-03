@@ -2,6 +2,12 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
+    const existingQuestions = await prisma.question.count();
+    if (existingQuestions > 0) {
+        console.log(`ℹ️ Base déjà alimentée (${existingQuestions} question(s)), seed ignoré.`);
+        return;
+    }
+
     await prisma.question.createMany({
         data: [
             // {

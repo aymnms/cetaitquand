@@ -40,8 +40,10 @@ class Room {
         try {
             const question = await getRandomQuestion();
             this.currentQuestion = question;
+            return question;
         } catch (error) {
             console.log(error);
+            return null;
         }
     }
 

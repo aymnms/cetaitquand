@@ -80,6 +80,10 @@ function joinGame() {
 }
 
 function displayQuestion(question) {
+    if (!question) {
+        createToast("Impossible de charger la question.", "error");
+        return;
+    }
     document.getElementById("question").innerText = `${question.invention}`;
     document.getElementById("questionImage").src=question.imageUrl;
     document.getElementById("questionImage").alt=question.invention;

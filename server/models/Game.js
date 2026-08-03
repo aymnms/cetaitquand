@@ -53,7 +53,12 @@ class Game {
             this.io.in(roomCode).disconnectSockets(true);
             this.roomManager.deleteRoom(roomCode);
         } else {
-            await room.changeQuestion();
+            const question = await room.changeQuestion();
+            if (!question) {
+                console.log(`Aucune question disponible pour la salle ${roomCode}`);
+                this.io.to(roomCode).emit("message", "Impossible de charger une question. Réessayez.", "error");
+                return;
+            }
             this.startTimer(roomCode);
             this.io.to(roomCode).emit("gameStarted", room.currentQuestion);
         }
