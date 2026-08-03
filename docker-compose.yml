@@ -17,6 +17,7 @@ services:
       - internal
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
       - "traefik.http.routers.cetaitquand-api.rule=Host(`api.cetaitquand.fr`)"
       - "traefik.http.routers.cetaitquand-api.entrypoints=websecure"
       - "traefik.http.routers.cetaitquand-api.tls.certresolver=letsencrypt"
