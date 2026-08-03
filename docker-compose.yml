@@ -10,7 +10,8 @@ services:
       - FRONTEND_URL=https://cetaitquand.fr
       - FRONTEND_URL_2=${FRONTEND_URL_2:-}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - proxy
       - internal
@@ -29,6 +30,11 @@ services:
       - POSTGRES_USER=cetaitquand
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=cetaitquand
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cetaitquand -d cetaitquand"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
       - db_data:/var/lib/postgresql/data
     networks:
